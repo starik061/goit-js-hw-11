@@ -6,6 +6,7 @@ const PIXABAY_KEY = '35924143-9020fc77f3274be39114409f4';
 const PIXABAY_URL = 'https://pixabay.com/api';
 let tempQuery = '';
 let queryPage = 1;
+let queryItemsPerPage = 40;
 
 const formEl = document.querySelector('#search-form');
 const searchInputEl = document.querySelector('[name="searchQuery"]');
@@ -44,8 +45,9 @@ async function onSearchImages(event) {
 
 async function requestToPixabay(query) {
   serverAnswer = await axios.get(
-    `${PIXABAY_URL}/?key=${PIXABAY_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${queryPage}&per_page=40`
+    `${PIXABAY_URL}/?key=${PIXABAY_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${queryPage}&per_page=${queryItemsPerPage}`
   );
+  console.dir(serverAnswer);
   return serverAnswer.data.hits;
 }
 
