@@ -1,0 +1,10 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo-card img {
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+}

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import './sass/main.scss';
 
 const PIXABAY_KEY = '35924143-9020fc77f3274be39114409f4';
 const PIXABAY_URL = 'https://pixabay.com/api';
@@ -64,7 +65,7 @@ async function renderPhotoCards(array) {
           downloads,
         }) => {
           return `<div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  <img src="${webformatURL}" alt="${tags}" width="340" loading="lazy" />
   <div class="info">
     <p class="info-item">
       <b>${likes} Likes</b>
