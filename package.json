@@ -18,9 +18,12 @@
     "url": "https://github.com/starik061/goit-js-hw-11/issues"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.7",
     "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
     "modern-normalize": "^1.1.0",
-    "notiflix": "^3.2.6"
+    "notiflix": "^3.2.6",
+    "simplelightbox": "^2.13.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",

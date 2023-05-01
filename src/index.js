@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import './sass/main.scss';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import * as bootstrap from 'bootstrap';
 
 const PIXABAY_KEY = '35924143-9020fc77f3274be39114409f4';
 const PIXABAY_URL = 'https://pixabay.com/api';
@@ -42,7 +45,7 @@ async function onSearchImages(event) {
     );
     loadMoreButtonEl.style.display = 'none';
   } else {
-    loadMoreButtonEl.style.display = 'inline-block';
+    loadMoreButtonEl.style.display = 'block';
     loadMoreButtonEl.addEventListener('click', onSearchImages);
   }
 
@@ -50,10 +53,14 @@ async function onSearchImages(event) {
     Notify.info(
       'Sorry, there are no images matching your search query. Please try again.'
     );
+    loadMoreButtonEl.style.display = 'none';
     return;
   }
 
-  renderPhotoCards(photoArr);
+  await renderPhotoCards(photoArr);
+
+  let gallery = new SimpleLightbox('.gallery .photo-card a');
+
   tempQuery = searchQuery;
   queryPage += 1;
 }
@@ -82,7 +89,9 @@ async function renderPhotoCards(array) {
           downloads,
         }) => {
           return `<div class="photo-card">
+          <a href="${largeImageURL}">
   <img src="${webformatURL}" alt="${tags}" width="340" loading="lazy" />
+  </a>
   <div class="info">
     <p class="info-item">
       <b>${likes} Likes</b>
@@ -97,6 +106,7 @@ async function renderPhotoCards(array) {
       <b>${downloads} Downloads</b>
     </p>
   </div>
+  
 </div>`;
         }
       )

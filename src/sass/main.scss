@@ -1,7 +1,10 @@
+@import 'bootstrap/scss/bootstrap';
+
 .gallery {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 3px;
 }
 .photo-card {
@@ -12,4 +15,14 @@
     height: 180px;
     object-fit: cover;
   }
+}
+
+.search-form {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.load-more {
+  max-width: 200px;
+  margin: 0 auto;
 }
