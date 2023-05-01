@@ -6,6 +6,23 @@
     <title>Page title</title>
   </head>
   <body>
-    <script src="./index.js"></script>
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
+      <button type="submit">Search</button>
+    </form>
+    <div class="gallery">
+      <!-- Карточки изображений -->
+    </div>
+
+    <button type="button" style="display: none" class="load-more">
+      Load more
+    </button>
+
+    <script src="./index.js" type="module"></script>
   </body>
 </html>
