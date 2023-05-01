@@ -71,7 +71,7 @@ async function renderPhotoCards(array) {
       <b>${likes} Likes</b>
     </p>
     <p class="info-item">
-      <b>>${views} Views</b>
+      <b>${views} Views</b>
     </p>
     <p class="info-item">
       <b>${comments} Comments</b>
