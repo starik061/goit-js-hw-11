@@ -4,6 +4,7 @@ import './sass/main.scss';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import * as bootstrap from 'bootstrap';
+import cardTemplate from './templates/card-template.hbs';
 
 const PIXABAY_KEY = '35924143-9020fc77f3274be39114409f4';
 const PIXABAY_URL = 'https://pixabay.com/api';
@@ -59,6 +60,9 @@ async function onSearchImages(event) {
 
   await renderPhotoCards(photoArr);
 
+  if (queryPage !== 1) {
+    smoothScroll();
+  }
   let gallery = new SimpleLightbox('.gallery .photo-card a');
 
   tempQuery = searchQuery;
@@ -78,42 +82,25 @@ async function renderPhotoCards(array) {
   galleryEl.insertAdjacentHTML(
     'beforeend',
     array
-      .map(
-        ({
-          webformatURL,
-          largeImageURL,
-          tags,
-          likes,
-          views,
-          comments,
-          downloads,
-        }) => {
-          return `<div class="photo-card">
-          <a href="${largeImageURL}">
-  <img src="${webformatURL}" alt="${tags}" width="340" loading="lazy" />
-  </a>
-  <div class="info">
-    <p class="info-item">
-      <b>${likes} Likes</b>
-    </p>
-    <p class="info-item">
-      <b>${views} Views</b>
-    </p>
-    <p class="info-item">
-      <b>${comments} Comments</b>
-    </p>
-    <p class="info-item">
-      <b>${downloads} Downloads</b>
-    </p>
-  </div>
-  
-</div>`;
-        }
-      )
+      .map(item => {
+        return cardTemplate(item);
+      })
       .join('')
   );
 }
 
 function clearGallery() {
   galleryEl.innerHTML = '';
+}
+
+function smoothScroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2.5,
+    behavior: 'smooth',
+  });
+  console.log('scroll');
 }
